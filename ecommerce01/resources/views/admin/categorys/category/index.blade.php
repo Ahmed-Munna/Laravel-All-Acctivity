@@ -10,11 +10,38 @@
             <h1 class="m-0">Dashboard</h1>
           </div><!-- /.col -->
           <div class="col-sm-6 d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add+</a>
+            <button type="button" id="createCategory" class="btn btn-primary" data-toggle="modal" data-target="#addCategory">Add+</button>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+
+<!-- Modal -->
+<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="fromRoute" >
+          @csrf
+            <input type="hidden" name="id" id="categoryId" method="PUT">
+          <div class="form-group">
+            <input type="text" class="form-control" id="categoryName" name="category">
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary save">Save</a>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
     <div class="card">
               <div class="card-header">
@@ -32,14 +59,14 @@
                   </tr>
                   </thead>
                   <tbody>
-                @foreach($data as $kye => $value)
+                @foreach($data as $key => $value)
                   <tr>
                     <td>{{$key+1}}</td>
                     <td>{{$value->category_name}}</td>
                     <td>{{$value->category_slug}}</td>
                     <td>
-                        <a href="" class="btn btn-danger">d</a>
-                        <a href="" class="btn btn-primary">u</a>
+                        <a href="{{route('category.delete', $value->id)}}" class="btn btn-danger">Delete</a>
+                        <a id="updateCategory" data-url="{{route('category.updateView', $value->id)}}" class="btn btn-primary" id="updateCategory" data-toggle="modal" data-target="#addCategory">Update</a>
                     </td>
                   </tr>
                 @endforeach
@@ -50,38 +77,5 @@
         </section>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
+
 @endsection

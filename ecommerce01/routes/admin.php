@@ -18,5 +18,9 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
 
     Route::prefix('category')->group(function () {
         Route::get('/', 'CategoryController@index')->name('category.index');
+        Route::post('/create', 'CategoryController@create')->name('category.create');
+        Route::get('/updateView/{id}', 'CategoryController@updateView')->name('category.updateView');
+        Route::put('/update', 'CategoryController@update')->name('category.update');
+        Route::get('/delete/{id}', 'CategoryController@delete')->name('category.delete');
     });
 });

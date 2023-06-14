@@ -10,13 +10,13 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{asset(backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css)}">
+  <link rel="stylesheet" href="{{asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
    <!-- DataTables -->
-   <link rel="stylesheet" href="{asset(backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css)}">
-  <link rel="stylesheet" href="{asset(backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css)}">
-  <link rel="stylesheet" href="{asset(backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css)}">
+   <link rel="stylesheet" href="{{asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
   <!-- Toastr plagin -->
@@ -45,48 +45,6 @@
   <!-- /.control-sidebar -->
 <!-- ./wrapper -->
 <!-- REQUIRED SCRIPTS -->
-<script>
-   @if(Session::has('message'))
-    var type = "{{ Session::get('alert-type', 'info') }}";
-    switch(type){
-        case 'info':
-            toastr.info("{{ Session::get('message') }}");
-            break;
-
-        case 'warning':
-            toastr.warning("{{ Session::get('message') }}");
-            break;
-
-        case 'success':
-            toastr.success("{{ Session::get('message') }}");
-            break;
-
-        case 'error':
-            toastr.error("{{ Session::get('message') }}");
-            break;
-    }
-  @endif
-</script>
-<script>
-       $(document).on("click", "#logout", function(e){
-        e.preventDefault();
-        var link = $(this).attr("href");
-        swal({
-          title: "Are you want to logout?",
-          text: "logout",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-        })
-        .then(willDelete) => {
-          if (willDelete) {
-            window.location.href = link;
-          } else {
-            swal("cancel");
-          }
-        }
-       });
-  </script>
 <!-- jQuery -->
 <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap -->
@@ -122,5 +80,88 @@
 <!-- AdminLTE for demo purposes -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('backend/dist/js/pages/dashboard2.js')}}"></script>
+<script src="{{asset('backend/dist/js/custom.js')}}"></script>
+<script type="text/javascript       ">
+  //alart massege
+
+  @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    switch(type){
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+  @endif
+
+    // $("#updateCategory").click(function() {
+
+    //   var url =  $(this).data("url");
+      // $.get(url, function(data) {
+
+      //   $("#categoryId").attr("value", data.id);
+      //   $("#categoryName").attr("value", data.category_name);
+
+      // });
+        // console.log(url);
+      // $("#fromRoute").attr("action", "{{route('category.update')}}");
+      // $(".modal-title").text("Update Category");
+
+    // });
+
+    $("#createCategory").click(function() {
+
+      $("#fromRoute").attr("action", "{{route('category.create')}}");
+      $(".modal-title").text("Create Category");
+      $(".save").attr("id", "create");
+
+    });
+
+    $("#cancel").click(function() {
+
+      $("#categoryId").removeAttr("value");
+      $("#categoryName").removeAttr("value");
+      $("#fromRoute").removeAttr("action");
+      $("#fromRoute").removeAttr("action");
+      
+    });
+
+    $(document).on("click", "#updateCategory", function() {
+      let url = $(this).data('url');
+      $.get(url, function(data) {
+         
+        $("#categoryId").attr("value", data.id);
+        $("#categoryName").attr("value", data.category_name);
+         
+      });
+      // $("#fromRoute").attr("action", "{{route('category.update')}}");
+      $(".modal-title").text("Update Category");
+      $(".save").attr("id", "update");
+    });
+
+    $(document).on("click", "#update", function() {
+      $.ajax({
+        url: "{{route('category.update')}}",
+        type: "PUT",
+        data: {
+          _tocen: _tocen,
+          categoryId: id,
+          categoryName: categoryName,
+        }
+      });
+    });
+
+</script>
 </body>
 </html>

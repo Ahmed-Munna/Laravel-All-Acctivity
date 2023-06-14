@@ -123,6 +123,7 @@
     $("#createCategory").click(function() {
 
       $("#fromRoute").attr("action", "{{route('category.create')}}");
+      $("#fromRoute").attr("method", "post");
       $(".modal-title").text("Create Category");
       $(".save").attr("id", "create");
 
@@ -145,22 +146,26 @@
         $("#categoryName").attr("value", data.category_name);
          
       });
-      // $("#fromRoute").attr("action", "{{route('category.update')}}");
+      $("#fromRoute").attr("action", "{{route('category.update')}}");
+      $("#fromRoute").attr("method", "post");
       $(".modal-title").text("Update Category");
       $(".save").attr("id", "update");
     });
 
-    $(document).on("click", "#update", function() {
-      $.ajax({
-        url: "{{route('category.update')}}",
-        type: "PUT",
-        data: {
-          _tocen: _tocen,
-          categoryId: id,
-          categoryName: categoryName,
-        }
-      });
-    });
+    // $(document).on("click", "#update", function() {
+    //   $.ajax({
+    //     url: "{{route('category.update')}}",
+    //     type: "post",
+    //     data: {
+    //       _tocen: _tocen,
+    //       categoryId: id,
+    //       categoryName: categoryName,
+    //     },
+    //     error: function (data) {
+    //       console.log('update successfull');
+    //     } 
+    //   });
+    // });
 
 </script>
 </body>

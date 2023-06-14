@@ -26,9 +26,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="fromRoute" >
+        <form id="fromRoute">
           @csrf
-            <input type="hidden" name="id" id="categoryId" method="PUT">
+            <input type="hidden" name="id" id="categoryId">
           <div class="form-group">
             <input type="text" class="form-control" id="categoryName" name="category">
           </div>

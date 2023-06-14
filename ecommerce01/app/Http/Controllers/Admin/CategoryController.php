@@ -48,7 +48,17 @@ class CategoryController extends Controller
     }
     
     public function update(Request $request) {
-        dd($request);
+        $validated = $request->validate(['category' => 'required']);
+        $info = Category::where('id', $request->id);
+        
+        if($info) {
+            $info->update([
+                'category_name' => $request->category,
+                'category_slug' => Str::slug($request->category, '-'),
+            ]);
+
+            return redirect()->back()->with("Update successfull");
+        }
     }
     // category delete
 

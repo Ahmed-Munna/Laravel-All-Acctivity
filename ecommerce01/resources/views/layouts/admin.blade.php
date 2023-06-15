@@ -167,6 +167,15 @@
     //   });
     // });
 
+    $(document).on('click', '#updateCategory', function() {
+      let url = $(this).data('url');
+      $.get(url, function(data) {
+        console.log(data.subcategory_name);
+        $("#subCategoryId").attr("value", data.id);
+        $("#editsubCategory").attr("value", data.subcategory_name);
+      });
+    });
+
 </script>
 </body>
 </html>

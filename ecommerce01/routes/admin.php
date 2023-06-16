@@ -32,4 +32,12 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
         Route::get('/delete/{id}', 'SubCategoryController@delete')->name('subcategory.delete');
     });
 
+    Route::prefix('childcategory')->group(function() {
+        Route::get('/', 'ChildCategoryController@index')->name('childcategory.index');
+        Route::post('/create', 'ChildCategoryController@create')->name('childcategory.create');
+        Route::get('/updateView/{id}', 'ChildCategoryController@updateView')->name('childcategory.updateView');
+        Route::post('/update', 'ChildCategoryController@update')->name('childcategory.update');
+        Route::get('/delete/{id}', 'ChildCategoryController@delete')->name('childcategory.delete');
+    });
+
 });

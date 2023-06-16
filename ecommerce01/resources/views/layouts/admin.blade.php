@@ -176,6 +176,43 @@
       });
     });
 
+    // data table
+
+    $(function childCategory() {
+      let table = $('.ytable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{route('childcategory.index')}}",
+        columns: [
+          {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+          {data: 'category_name', name: 'category_name'},
+          {data: 'subcategory_name', name: 'subcategory_name'},
+          {data: 'childcategory_name', name: 'childcategory_name'},
+          {data: 'slug', name: 'slug'},
+          {data: 'action', name: 'action', oderable: true, serchable: true}
+        ]
+      });
+    });
+
+    // update view
+
+    $(document).on('click', '.update', function() {
+      let url = $(this).data('url');
+      $.get(url,function(data) {
+        $('#childCategoryId').attr('value', data.id);
+        $('#editchildCategory').attr('value', data.childcategory_name);
+      })
+    });
+
+    // delete 
+
+    $(document).on('click', '.delete', function() {
+      let url = $(this).data('url');
+      $.get(url, function() {
+        console.log('done');
+      });
+    });
+
 </script>
 </body>
 </html>

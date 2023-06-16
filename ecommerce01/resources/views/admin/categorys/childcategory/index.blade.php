@@ -29,10 +29,15 @@
         <form id="fromsRoute" action="{{route('childcategory.create')}}" method="POST">
           @csrf
           <div class="form-group">
-            <select class="custom-select" id="inputGroupSelect01" name="categoryId">
-                <option selected>Select category</option>
-                @foreach ($subcategory as $value)  
-                <option value="{{$value->id}}">{{$value->subcategory_name}}</option>
+            <select class="custom-select" id="inputGroupSelect01" name="subcategoryId">
+                <option selected>Select category/subcategory</option>
+                @foreach($category as $ctg)
+                <option value="{{$ctg->id}}" disabled>{{$ctg->category_name}}</option>
+                    @foreach($subcategory as $sctg)
+                    @if($ctg->id == $sctg->category_id)
+                      <option value="{{$sctg->id}}"> --{{$sctg->subcategory_name}}</option>    
+                    @endif            
+                    @endforeach         
                 @endforeach
             </select>
           </div>
@@ -51,7 +56,7 @@
 </div>
 
 <!-- Update Modal -->
-<div class="modal fade" id="editSubCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editChildCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -60,11 +65,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="fromsRoute" action="{{route('subcategory.update')}}" method="POST">
+        <form id="fromsRoute" action="{{route('childcategory.update')}}" method="POST">
           @csrf
-          <input type="hidden" id="subCategoryId" value="" name="editSubCategoryId">
+          <input type="hidden" id="childCategoryId" value="" name="editchildCategoryId">
           <div class="form-group">
-            <input type="text" class="form-control" value="" id="editsubCategory" name="editsubCategory">
+            <input type="text" class="form-control" value="" id="editchildCategory" name="editchildCategory">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -79,35 +84,24 @@
 
     <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Here all Sub-Categorys</h3>
+                <h3 class="card-title">Here Child Categorys</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped ytable">
                   <thead>
                   <tr>
                     <th>SL</th>
                     <th>Category</th>
                     <th>Sub Category</th>
+                    <th>Child Category</th>
                     <th>Slug</th>
                     <th>Acton</th>
                   </tr>
                   </thead>
                   <tbody>
                 
-                @foreach($data as $key => $value)
-                  <tr>
-                    <td>{{$key+1}}</td>
-                    <td>{{$value->category_name}}</td>
-                    <td>{{$value->subcategory_name}}</td>
-                    <td>{{$value->subcategory_slug}}</td>
-                    <td>
-                        <a href="{{route('subcategory.delete', $value->id)}}" class="btn btn-danger">Delete</a>
-                        <a data-url="{{route('subcategory.updateView', $value->id)}}" class="btn btn-primary" id="updateCategory" data-toggle="modal" data-target="#editSubCategory">Update</a>
-                    </td>
-                  </tr>
-                @endforeach
-                </table>
+                  </table>
               </div>
               <!-- /.card-body -->
             </div>

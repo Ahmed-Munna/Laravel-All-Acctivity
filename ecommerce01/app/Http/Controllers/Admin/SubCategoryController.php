@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\SubCategory;
 use App\Models\Category;
 use Illuminate\Support\Str;
-use DB;
 
 class SubCategoryController extends Controller
 {

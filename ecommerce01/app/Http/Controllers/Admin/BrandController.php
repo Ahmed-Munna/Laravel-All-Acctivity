@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Brands;
 use DataTables;
 
@@ -69,8 +70,44 @@ class BrandController extends Controller
 
     public function updateView($id) {
         $data = Brands::findOrFail($id);
-        if ($hasId) {
+        if ($data) {
             return $data;
+        }
+    }
+
+    public function update(Request $request) {
+        $validated = $request->validate([
+            'brandName2' => 'required',
+        ]);
+
+        $data = Brands::findOrFail($request->brandId);
+
+        if ($request->editbrandLogo) {
+
+            if(Storage::exists($data->brand_image)){
+            
+                unlink($data->brand_image);
+            }
+            $logoNewName = Str::slug($request->brandName2, '-').'.'.$request->editbrandLogo->extension();
+            $request->editbrandLogo->move('backend/dist/admin/brand/', $logoNewName);
+
+            $data->update([
+                'brand_name' => $request->brandName2,
+                'slug' => Str::slug($request->brandName2),
+                'brand_image' => 'backend/dist/admin/brand/'.$logoNewName,
+            ]);
+
+            return redirect()->back()->with('Update successfull');
+           
+        } else {
+
+            $data->update([
+                'brand_name' => $request->brandName2,
+                'slug' => Str::slug($request->brandName2),
+                'brand_image' => $request->oldimg,
+            ]);
+
+            return redirect()->backe()->with('Update successfull');
         }
     }
 

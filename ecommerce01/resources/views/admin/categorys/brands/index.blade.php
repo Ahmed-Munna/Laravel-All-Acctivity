@@ -58,11 +58,12 @@
         <form id="fromsRoute" action="{{route('brand.update')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <input type="hidden" id="brandId" data-url="" value="" name="brandId">
+          <input type="hidden" name="oldimg" id="oldimg" src="">
           <div class="form-group">
             <input type="file" name="editbrandLogo" id="editbrandLogo">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" value="" id="editbrand" name="editbrand">
+            <input type="text" class="form-control" value="" id="brandName2" name="brandName2">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

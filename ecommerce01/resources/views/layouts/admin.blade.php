@@ -218,7 +218,9 @@
       let url = $(this).attr('href');
    
         $.get(url, function(data) {
-          console.log(data);
+          $('#brandId').attr('value', data.id);
+          $('#oldimg').attr('src', data.brand_image);
+          $('#brandName2').attr('value', data.brand_name);
         });
     });
 

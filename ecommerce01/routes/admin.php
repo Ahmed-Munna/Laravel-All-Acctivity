@@ -40,4 +40,12 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
         Route::get('/delete/{id}', 'ChildCategoryController@delete')->name('childcategory.delete');
     });
 
+    Route::prefix('brands')->group(function() {
+        Route::get('/', 'BrandController@index')->name('brand.index');
+        Route::post('/create', 'BrandController@create')->name('brand.create');
+        Route::get('/updateView/{id}', 'BrandController@updateView')->name('brand.updateView');
+        Route::post('/update', 'BrandController@update')->name('brand.update');
+        Route::get('/delete/{id}', 'BrandController@delete')->name('brand.delete');
+    });
+
 });

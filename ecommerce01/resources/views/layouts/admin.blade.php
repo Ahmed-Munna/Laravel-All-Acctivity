@@ -170,13 +170,12 @@
     $(document).on('click', '#updateCategory', function() {
       let url = $(this).data('url');
       $.get(url, function(data) {
-        console.log(data.subcategory_name);
         $("#subCategoryId").attr("value", data.id);
         $("#editsubCategory").attr("value", data.subcategory_name);
       });
     });
 
-    // data table
+    // child category data table
 
     $(function childCategory() {
       let table = $('.ytable').DataTable({
@@ -192,6 +191,35 @@
           {data: 'action', name: 'action', oderable: true, serchable: true}
         ]
       });
+    });
+
+    // brand data table
+
+    $(function brand() {
+      let table = $('.brandtable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{route('brand.index')}}",
+        columns: [
+          {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+          {data: 'brand_name', name: 'brand_name'},
+          {data: 'slug', name: 'slug'},
+          {data: 'brand_image', name: 'brand_image', render: function (data, type, full, meta) {
+            return "<img src=\"" + data + "\" height=\"40\" width=\"40\" >";
+          }},
+          {data: 'action', name: 'action', oderable:true, serchable: true}
+        ]
+      });
+    });
+
+    // brand update view
+
+    $(document).on('click', '#updateBrand', function () {
+      let url = $(this).attr('href');
+   
+        $.get(url, function(data) {
+          console.log(data);
+        });
     });
 
     // update view

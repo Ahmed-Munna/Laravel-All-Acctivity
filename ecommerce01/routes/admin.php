@@ -50,4 +50,9 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
         Route::get('/delete/{id}', 'BrandController@delete')->name('brand.delete');
     });
 
+    Route::prefix('setting')->group(function() {
+        Route::get('/onPageSeo', 'SeoController@index')->name('seo.index');
+        Route::post('/update', 'SeoController@update')->name('seo.update');
+    });
+
 });

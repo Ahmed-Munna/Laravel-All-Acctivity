@@ -35,6 +35,7 @@
                     <p>Dashboard</p>
                     </a>
                 </li>
+                <!--  categorys  -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -70,6 +71,46 @@
                     </li>
                     </ul>
                 </li>
+                <!-- settings -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>Setting<i class="fas fa-angle-left right"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('seo.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Seo Setting</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('subcategory.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Website Sitting</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('childcategory.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Page Management</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('brand.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>SMTP Setting</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('brand.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Payment Geteway</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+                <!-- profile -->
                 <li class="nav-header">Profile</li>
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" id="logout" class="nav-link">

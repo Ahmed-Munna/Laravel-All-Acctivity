@@ -15,6 +15,8 @@ Route::get('logout', function ()
 
 Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_admin'],function () {
     Route::get('/admin/home', 'AdminContoller@admin')->name('admin.home');
+    Route::get('/admin/profile/password_change', 'AdminContoller@profile')->name('profile.home');
+    Route::post('/admin/profile/update_password', 'AdminContoller@changePass')->name('profile.changePass');
 
     Route::prefix('category')->group(function () {
         Route::get('/', 'CategoryController@index')->name('category.index');

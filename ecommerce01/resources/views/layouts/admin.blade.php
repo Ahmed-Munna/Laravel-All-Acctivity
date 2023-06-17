@@ -193,7 +193,10 @@
       });
     });
 
-    // brand data table
+   /*
+    Print the brand datatable using Laravel yajara package 
+    to display the brand information.
+  */
 
     $(function brand() {
       let table = $('.brandtable').DataTable({
@@ -211,6 +214,9 @@
         ]
       });
     });
+
+  // # End of brand datatable code
+
 
     // brand update view
 

@@ -77,6 +77,12 @@
                     <p class="text">Logout</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('profile.home') }}" id="logout" class="nav-link">
+                    <i class="nav-icon far fa-circle text-danger"></i>
+                    <p class="text">Password change</p>
+                    </a>
+                </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

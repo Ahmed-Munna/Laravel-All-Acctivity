@@ -217,6 +217,24 @@
 
   // # End of brand datatable code
 
+    // page creation data table
+
+    $(function pages() {
+        let pageCreate = $('.allpagetable').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: "{{route('page.index')}}",
+          
+          columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'page_name', name: 'page_name'},
+            {data: 'page_title', name: 'page_title'},
+            {data: 'action', name: 'action', oderable: true, serchable: true},
+          ],
+        });
+    })
+
+    // end of table
 
     // brand update view
 
@@ -248,6 +266,52 @@
         console.log('done');
       });
     });
+    				
+
+    //page management update view
+
+    $(document).on('click', '#updatePage', function() {
+      let url = $(this).attr('href');
+      
+      $.get(url,function(data) {
+        $('#id').attr('value', data.id);
+        $('#update_page_name').attr('value', data.page_name);
+        $('#update_page_title').attr('value', data.page_title);
+        $('#update_page_discription').text(data.page_discription);
+
+        if ($("#one").val() == data.page_position) {
+          $("#one").prop('selected', true);
+        } else if ($("#two").val() == data.page_position) {
+          $("#two").prop('selected', true);
+        } else {
+          $("#three").prop('selected', true);
+        }
+      })
+    });
+
+    $(document).ready(function() {
+
+      
+
+    //   $("#updatePage").click(function () {
+    //   // let url = $("#updatePage").attr('href');
+
+      
+
+    //   // $.get(url, function (data) {
+    //   //   $('').attr('value', data.id);
+    //   //   $('').attr('value', data.page_position);
+    //   //   $('').attr('value', data.page_name);
+    //   //   $('').attr('value', data.page_slug);
+    //   //   $('').attr('value', data.page_title);
+    //   //   $('').text(data.page_discription);
+
+    //   //   console.log(data);
+    //   // });
+    // });
+  })
+
+
 
 </script>
 </body>

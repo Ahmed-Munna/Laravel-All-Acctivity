@@ -51,8 +51,18 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
     });
 
     Route::prefix('setting')->group(function() {
+        // on-page seo route
         Route::get('/onPageSeo', 'SeoController@index')->name('seo.index');
         Route::post('/update', 'SeoController@update')->name('seo.update');
+        // SMTP mail route
+        Route::get('/smtp', 'SmtpController@index')->name('smtp.index');
+        Route::post('/smtp/update', 'SmtpController@update')->name('smtp.update');
+        // Dynamic pages route
+        Route::get('/page/manage', 'PageCreationController@index')->name('page.index');
+        Route::post('/page/create', 'PageCreationController@create')->name('page.create');
+        Route::get('/updateView/{id}', 'PageCreationController@updateView')->name('page.updateView');
+        Route::post('/page/update', 'PageCreationController@update')->name('page.update');
+        Route::get('/page/delete/{id}', 'PageCreationController@delete')->name('page.delete');
     });
 
 });

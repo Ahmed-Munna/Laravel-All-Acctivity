@@ -63,6 +63,15 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
         Route::get('/updateView/{id}', 'PageCreationController@updateView')->name('page.updateView');
         Route::post('/page/update', 'PageCreationController@update')->name('page.update');
         Route::get('/page/delete/{id}', 'PageCreationController@delete')->name('page.delete');
+
+        // websetting route
+        Route::get('/website-setting', 'WebsiteAllSetting@index')->name('website.index');
+        Route::post('/website-update', 'WebsiteAllSetting@update')->name('website.update');
+
+        // Warehouse route
+        Route::get('/warehouse', 'WarehouseController@index')->name('warehouse.index');
+        Route::post('/warehouse/update', 'WarehouseController@update')->name('warehouse.update');
+        
     });
 
 });

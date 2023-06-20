@@ -85,7 +85,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('subcategory.index')}}" class="nav-link">
+                        <a href="{{route('website.index')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Website Sitting</p>
                         </a>
@@ -106,6 +106,12 @@
                         <a href="{{route('brand.index')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Payment Geteway</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('warehouse.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Warehouse</p>
                         </a>
                     </li>
                     </ul>

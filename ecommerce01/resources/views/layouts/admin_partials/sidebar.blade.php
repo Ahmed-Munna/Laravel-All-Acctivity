@@ -71,6 +71,32 @@
                     </li>
                     </ul>
                 </li>
+
+                <!--  Offer  -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                        Offers
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('coupon.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Coupon</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('campaign.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Campaign</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+
                 <!-- settings -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">

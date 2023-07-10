@@ -50,6 +50,13 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
         Route::get('/delete/{id}', 'BrandController@delete')->name('brand.delete');
     });
 
+    Route::prefix('offer')->group(function() {
+
+        Route::get('/coupon', 'OfferController@couponIndex')->name('coupon.index');
+        Route::get('/campaign', 'OfferController@campagnIndex')->name('campaign.index');
+
+    });
+
     Route::prefix('setting')->group(function() {
         // on-page seo route
         Route::get('/onPageSeo', 'SeoController@index')->name('seo.index');

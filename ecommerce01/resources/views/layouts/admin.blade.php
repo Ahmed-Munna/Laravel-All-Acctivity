@@ -232,9 +232,31 @@
             {data: 'action', name: 'action', oderable: true, serchable: true},
           ],
         });
-    })
+    });
 
     // end of table
+
+    // coupon
+
+    $(function coupon() {
+      let coupons = $('.cuponTable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{route('coupon.index')}}",
+
+        columns: [
+          {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+          {data: 'coupon_code', name: 'coupon_code'},
+          {data: 'coupon_amount', name: 'coupon_amount'},
+          {data: 'valid_date', name: 'valid_date'},
+          {data: 'coupon_type', name: 'coupon_type'},
+          {data: 'coupon_status', name: 'coupon_status'},
+          {data: 'action', name: 'action', oderable: true, serchable: true},
+        ],
+      });
+    });
+
+    // end coupon
 
     // brand update view
 

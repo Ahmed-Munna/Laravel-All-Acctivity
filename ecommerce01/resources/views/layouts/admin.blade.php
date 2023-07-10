@@ -175,6 +175,33 @@
       });
     });
 
+    // coupon 
+
+    $(document).on('click', '#updateCouponBtn', function() {
+      let url = $(this).data('url');
+      $.get(url, function(data) {
+        $("#id").attr("value", data.id);
+        $("#updateCouponCode").attr("value", data.coupon_code);
+        $("#updateCouponAmount").attr("value", data.coupon_amount);
+        $("#oldDate").attr("value", data.valid_date);
+
+        if ($("#ctOne").val() == data.coupon_type) {
+          $("#ctOne").prop('selected', true);
+        } else {
+          $("#ctTwo").prop('selected', true);
+        }
+
+        if ($("#Active").val() == data.status) {
+          $("#Active").prop('selected', true);
+        } else {
+          $("#Pause").prop('selected', true);
+        }
+
+      });
+    });
+
+    // end coupon
+
     // child category data table
 
     $(function childCategory() {
@@ -238,23 +265,23 @@
 
     // coupon
 
-    $(function coupon() {
-      let coupons = $('.cuponTable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{route('coupon.index')}}",
+    // $(function coupon() {
+    //   let coupons = $('.cuponTable').DataTable({
+    //     processing: true,
+    //     serverSide: true,
+    //     ajax: "{{route('coupon.index')}}",
 
-        columns: [
-          {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-          {data: 'coupon_code', name: 'coupon_code'},
-          {data: 'coupon_amount', name: 'coupon_amount'},
-          {data: 'valid_date', name: 'valid_date'},
-          {data: 'coupon_type', name: 'coupon_type'},
-          {data: 'coupon_status', name: 'coupon_status'},
-          {data: 'action', name: 'action', oderable: true, serchable: true},
-        ],
-      });
-    });
+    //     columns: [
+    //       {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+    //       {data: 'coupon_code', name: 'coupon_code'},
+    //       {data: 'coupon_amount', name: 'coupon_amount'},
+    //       {data: 'valid_date', name: 'valid_date'},
+    //       {data: 'coupon_type', name: 'coupon_type'},
+    //       {data: 'coupon_status', name: 'coupon_status'},
+    //       {data: 'action', name: 'action', oderable: true, serchable: true},
+    //     ],
+    //   });
+    // });
 
     // end coupon
 

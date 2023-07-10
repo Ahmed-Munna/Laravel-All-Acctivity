@@ -15,22 +15,72 @@ class OfferController extends Controller
 
     public function couponIndex(Request $request) {
         
-        if ($request->ajax()) {
-            $data = Coupon::all();
+        $data = Coupon::all();
 
-            return DataTables::of($data)
-                                ->addIndexColumn()
-                                ->addColumn('action', function($row) {
-                                    $actionbtn = '<a data-url="'.route('coupon.delete', $row->id).'" class="btn btn-danger deleteCoupon">Delete</a>
-                                    <a data-url="'.route('coupon.updateView', $row->id).'" class="btn btn-primary " id="updateCoupon" data-toggle="modal" data-target="#updateCoupon">Update</a>';
+        return view('admin.offer.coupon', compact('data'));
+    }
 
-                                    return $actionbtn;
-                                })
-                                ->rawColumn(['action'])
-                                ->make(true);
+    public function couponCreate(Request $request) {
+        if ($request->isMethod('POST')) {
+
+            $validate = $request->validate([
+                'coupon_code' => 'required',
+                'coupon_amount' => 'required',
+                'valid_date' => 'required',
+                'coupon_type' => 'required',
+                'coupon_status' => 'required',
+            ]);
+
+            Coupon::insert([
+                'coupon_code' => $request->coupon_code,
+                'coupon_amount' => $request->coupon_amount,
+                'valid_date' => $request->valid_date,
+                'coupon_type' => $request->coupon_type,
+                'status' => $request->coupon_status,
+            ]);
+
+            return redirect()->back();
+        } else {
+            return redirect()->back();
         }
+    }
 
+    public function couponUpdateView($id) {
+        $data = Coupon::findOrFail($id);
 
-        return view('admin.offer.coupon');
+        return $data;
+    }
+
+    public function couponUpdate(Request $request) {
+        $info = Coupon::where('id', $request->id);
+        
+        if($request->valid_date != null) {
+            $info->update([
+                'coupon_code' => $request->coupon_code,
+                'coupon_amount' => $request->coupon_amount,
+                'valid_date' => $request->valid_date,
+                'coupon_type' => $request->coupon_type,
+                'status' => $request->coupon_status,
+            ]);
+
+            return redirect()->back()->with("Update successfull");
+        } else {
+            $info->update([
+                'coupon_code' => $request->coupon_code,
+                'coupon_amount' => $request->coupon_amount,
+                'valid_date' => $request->oldDate,
+                'coupon_type' => $request->coupon_type,
+                'status' => $request->coupon_status,
+            ]);
+
+            return redirect()->back()->with("Update successfull");
+        }
+    }
+
+    public function couponDelete($id) {
+        $data = Coupon::findOrFail($id);
+        $data->delete();
+
+        return redirect()->back();
     }
 }

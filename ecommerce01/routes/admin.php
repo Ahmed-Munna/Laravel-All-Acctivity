@@ -53,6 +53,11 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
     Route::prefix('offer')->group(function() {
 
         Route::get('/coupon', 'OfferController@couponIndex')->name('coupon.index');
+        Route::post('/coupon', 'OfferController@couponCreate')->name('coupon.create');
+        Route::get('/delete/{id}', 'OfferController@couponDelete')->name('coupon.delete');
+        Route::get('/updateView/{id}', 'OfferController@couponUpdateView')->name('coupon.updateView');
+        Route::post('/update', 'OfferController@couponUpdate')->name('coupon.update');
+
         Route::get('/campaign', 'OfferController@campagnIndex')->name('campaign.index');
 
     });

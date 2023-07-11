@@ -30,5 +30,6 @@ class MarazzoProduct extends Model
         'status',
         'flash_deal_id',
         'cash_on_delivery',
+        'picup_id',
     ];
 }

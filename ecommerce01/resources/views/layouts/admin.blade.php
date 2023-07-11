@@ -175,6 +175,22 @@
       });
     });
 
+   // picup point
+
+   $(document).on('click', '#updatePicupBtn', function() {
+      let url = $(this).data('url');
+
+      $.get(url, function(data) {
+        $("#id").attr("value", data.id);
+        $("#picupPointName").attr("value", data.picup_point_name);
+        $("#picupPointAddress").attr("value", data.picup_point_address);
+        $("#picupPointPhone").attr("value", data.picup_point_phone);
+        $("#picupPointaPhone").attr("value", data.picup_point_aphone);
+      });
+    });
+
+   // picup point end
+
     // coupon 
 
     $(document).on('click', '#updateCouponBtn', function() {
@@ -218,6 +234,25 @@
           {data: 'action', name: 'action', oderable: true, serchable: true}
         ]
       });
+    });
+
+    // Picup point
+
+    $(function picupPoint() {
+      let table = $('#picupTable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{route('picup.point.index')}}",
+        columns: [
+          {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+          {data: 'picup_point_name', name: 'picup_point_name'},
+          {data: 'picup_point_address', name: 'picup_point_address'},
+          {data: 'picup_point_phone', name: 'picup_point_phone'},
+          {data: 'picup_point_aphone', name: 'picup_point_aphone'},
+          {data: 'action', name: 'action', oderable: true, serchable:true}
+        ],
+      });
+
     });
 
    /*

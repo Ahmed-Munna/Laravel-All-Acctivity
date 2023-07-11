@@ -62,6 +62,16 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
 
     });
 
+    Route::prefix('picup')->group(function() {
+
+        Route::get('/point', 'PicupController@picupIndex')->name('picup.point.index');
+        Route::post('/coupon', 'PicupController@picupCreate')->name('picup.point.create');
+        Route::get('/delete/{id}', 'PicupController@picupDelete')->name('picup.point.delete');
+        Route::get('/updateView/{id}', 'PicupController@picupUpdateView')->name('picup.point.updateView');
+        Route::post('/update', 'PicupController@picupUpdate')->name('picup.point.update');
+
+    });
+
     Route::prefix('setting')->group(function() {
         // on-page seo route
         Route::get('/onPageSeo', 'SeoController@index')->name('seo.index');

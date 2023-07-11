@@ -97,6 +97,26 @@
                     </ul>
                 </li>
 
+                
+                <!--  Picup point  -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                        Picup
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('picup.point.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Picup points</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+
                 <!-- settings -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">

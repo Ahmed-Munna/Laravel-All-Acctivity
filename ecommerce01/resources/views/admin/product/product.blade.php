@@ -14,61 +14,75 @@
     </div>
 
 
-        <div class="card">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-8">
+            <div class="card">
         <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Website Setting</h3>
+                <h3 class="card-title">Add Product</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{route('product.create')}}" method="POST" enctype="multipart/form-data">
+              <form action="{{route('product.create')}}" method="POST" enctype="multipart/form-cat">
                 @csrf
                 <div class="card-body">
-                  <div class="form-group">
-                    <label for="metaTitle">Currency</label>
-                    <select class="custom-select" id="Currency" name="currency">
-                        <option> Select </option>
-                        <option value="$" {{ ($data->currency == '$') ? 'selected' : '' }}>USD</option>
-                        <option value="৳" {{ ($data->currency == '৳') ? 'selected' : '' }}>BTD</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="phone_one">Phone Number</label>
-                    <input type="text" class="form-control" value="{{$data->phone_one}}" name="phone_one" id="phone_one">
-                  </div>
-                  <div class="form-group">
-                    <label for="phone_two">Another Phone Number</label>
-                    <input type="text" class="form-control" value="{{$data->phone_two}}" name="phone_two" id="phone_two">
-                  </div>
-                  <div class="form-group">
-                    <label for="main_email">Main Email</label>
-                    <input type="email" class="form-control" value="{{$data->main_email}}" name="main_email" id="main_email">
-                  </div>
-                  <div class="form-group">
-                    <label for="support_email">Support Email</label>
-                    <input type="email" class="form-control" value="{{$data->support_email}}" name="support_email" id="support_email">
-                  </div>
-                  <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" name="address" id="address" value="{{$data->address}}">
-                  </div>
-                  <div class="form-group">
-                    <label for="logo">Logo</label><br>
-                    <input type="file" name="logo" id="logo">
-                    <input type="hidden" value="{{$data->logo}}" name="oldlogo">
-                  </div>
-                  <div class="form-group">
-                    <label for="address">Favicon</label><br>
-                    <input type="file" class="" name="favicon" id="favicon">
-                    <input type="hidden" class="form-control" value="{{$data->favicon}}" name="oldfavicon">
-                  </div>
-                  <div class="form-group">
-                    <label for="twitter_link">Twitter Link</label>
-                    <input type="text" class="form-control" name="twitter_link" id="twitter_link" value="{{$data->twitter_link}}">
-                  </div>
-                  <div class="form-group">
-                    <label for="linkedin">Linkedin</label>
-                    <input type="text" class="form-control" name="linkedin" id="linkedin" value="{{$data->linkedin}}">
+                  <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                          <label for="product_name">Product Name</label>
+                          <input type="text" class="form-control" value="{{0}}" name="product_name" id="product_name">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="product_category">Product Category</label>
+                          <select type="text" class="form-control" name="product_category" id="product_category">
+                              <option>Select Category</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="brand">Brand</label>
+                          <select type="text" class="form-control" name="brand" id="brand">
+                              <option>Select Brand</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="unit">Unit</label>
+                          <select type="text" class="form-control" name="unit" id="unit">
+                              <option>Select Unit</option>
+                          </select>
+                        </div>
+
+                       
+                    </div>
+                    <div class="col-6">
+
+                        <div class="form-group">
+                          <label for="product_code">Product Code</label>
+                          <input type="text" class="form-control" value="{{0}}" name="product_code" id="product_code">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="product_childCategory">ChildCategory</label>
+                          <select type="text" class="form-control" name="childCategory" id="product_childCategory">
+                              <option>ChildCategory</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="picup_point">Picup Point</label>
+                          <select type="text" class="form-control" name="childCategory" id="picup_point">
+                              <option>Picup Point</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="product_name">Product Name</label>
+                          <input type="text" class="form-control" value="{{0}}" name="product_name" id="product_name" data-role="tagsinput">
+                        </div>
+
+                    </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -78,6 +92,9 @@
                 </div>
               </form>
             </div>
+        </div>
+            </div>
+          </div>
         </div>
     </section>
 </div>

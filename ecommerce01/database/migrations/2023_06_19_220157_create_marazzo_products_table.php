@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('unit')->nullable();
             $table->string('tags')->nullable();
             $table->string('video')->nullable();
+            $table->string('colour')->nullable();
+            $table->string('size')->nullable();
             $table->string('purchase_price')->nullable();
             $table->string('selling_price')->nullable();
             $table->string('discount_price')->nullable();

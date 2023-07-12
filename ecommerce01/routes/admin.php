@@ -72,6 +72,13 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
 
     });
 
+    Route::prefix('product')->group(function() {
+        Route::get('/', 'ProductController@productIndex')->name('product.index');
+        Route::get('/create', 'ProductController@create')->name('product.create');
+        Route::get('/manage', 'ProductController@manageIndex')->name('manage.index');
+        // Route::get('/', 'ProductController@productIndex')->name('product.index');
+    });
+
     Route::prefix('setting')->group(function() {
         // on-page seo route
         Route::get('/onPageSeo', 'SeoController@index')->name('seo.index');

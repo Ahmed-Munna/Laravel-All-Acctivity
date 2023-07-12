@@ -31,5 +31,7 @@ class MarazzoProduct extends Model
         'flash_deal_id',
         'cash_on_delivery',
         'picup_id',
+        'colour',
+        'size'
     ];
 }

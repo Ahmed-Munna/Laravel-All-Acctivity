@@ -19,6 +19,10 @@
   <link rel="stylesheet" href="{{asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
+  <!-- TagInput plagin -->
+  <link rel="stylesheet" href="{{asset('backend/plugins/taginput/tagsinput.css')}}">
+  <link rel="stylesheet" href="{{asset('backend/plugins/text-editor/richtext.min.css')}}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css">
   <!-- Toastr plagin -->
   <link rel="stylesheet" href="{{asset('backend/plugins/toastr/toastr.min.css')}}">
 </head>
@@ -61,7 +65,11 @@
 <script src="{{asset('backend/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
 <script src="{{asset('backend/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
 <script src="{{asset('backend/plugins/tpastr/toastr.min.js')}}"></script>
+<script src="{{asset('backend/plugins/taginput/tagsinput.js')}}"></script>
+<script src="{{asset('backend/plugins/text-editor/richtext.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/trumbowyg.min.js"></script>
+<script>
 <!-- ChartJS -->
 <script src="{{asset('backend/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- DataTables  & Plugins -->
@@ -82,6 +90,11 @@
 <script src="{{asset('backend/dist/js/pages/dashboard2.js')}}"></script>
 <script src="{{asset('backend/dist/js/custom.js')}}"></script>
 <script type="text/javascript       ">
+
+$('#product_details').trumbowyg({
+    btns: [['strong', 'em',], ['insertImage']],
+    autogrow: true
+})
   //alart massege
 
   @if(Session::has('message'))

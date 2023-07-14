@@ -37,9 +37,17 @@
                               </div>
 
                               <div class="form-group">
-                                <label for="product_category">Product Category</label>
-                                <select type="text" class="form-control" name="product_category" id="product_category">
-                                    <option>Select Category</option>
+                                <label for="product_category">Product Category/Subcategory</label>
+                                <select type="text" class="form-control" name="product_category" id="category">
+                                    <option></option>
+                                    @foreach ($cat as $value)
+                                      <option disabled class="text-warning">{{$value->category_name}}</option>
+                                      @foreach ($subCat as $subVal)
+                                        @if($value->id == $subVal->category_id)
+                                          <option value="{{$subVal->id}}">{{$subVal->subcategory_name}}</option>
+                                        @endif
+                                      @endforeach
+                                    @endforeach
                                 </select>
                               </div>
                               
@@ -47,6 +55,10 @@
                                 <label for="brand">Brand</label>
                                 <select type="text" class="form-control" name="brand" id="brand">
                                     <option>Select Brand</option>
+
+                                    @foreach ($brand as $value)
+                                      <option value="{{$value->id}}">{{$value->brand_name}}</option>
+                                    @endforeach
                                 </select>
                               </div>
 
@@ -76,31 +88,28 @@
                                   <label for="picup_point">Picup Point</label>
                                   <select type="text" class="form-control" name="childCategory" id="picup_point">
                                       <option>Picup Point</option>
+                                      @foreach ($picup as $value)
+                                      <option value="{{$value->id}}">{{$value->picup_point_name}}</option>
+                                    @endforeach
                                   </select>
                                 </div>
 
                                 <div class="form-group">
-                                  <label for="product_name">Tags</label>
-                                  <input type="text" class="form-control" value="" name="product_name" id="tags" data-role="tagsinput">
+                                  <label for="product_price">Product price</label>
+                                  <input type="text" class="form-control" name="product_price" id="product_price">
                                 </div>
 
                             </div>
                           </div>
 
                           <div class="row">
-                            <div class="col-md-4">
-                              <div class="form-group">
-                                <label for="product_price">Product price</label>
-                                <input type="text" class="form-control" value="{{0}}" name="product_price" id="product_price">
-                              </div>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                               <div class="form-group">
                                 <label for="product_price">Selling Price</label>
-                                <input type="text" class="form-control" value="{{0}}" name="product_price" id="product_price">
+                                <input type="text" class="form-control" name="product_price" id="product_price">
                               </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                             <div class="form-group">
                                 <label for="product_discount">Product Discount</label>
                                 <input type="text" class="form-control" value="{{0}}" name="product_discount" id="product_discount">
@@ -111,11 +120,9 @@
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="warehouse">Warehouse</label>
-                                <select type="text" class="form-control" name="warehouse" id="warehouse">
-                                    <option>Select Brand</option>
-                                </select>
-                              </div>
+                                  <label for="product_name">Tags</label>
+                                  <input type="text" class="form-control" value="" name="product_name" id="tags" data-role="tagsinput">
+                                </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
@@ -146,6 +153,35 @@
                             </div>
                           </div>
                         </div>
+                        <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="customFile">Main Thumbnail</label>
+
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                          </div>
+                        </div>
+                        
+                          <div class="form-group">
+                            <div class="custom-control custom-switch">
+                              <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                              <label class="custom-control-label" for="customSwitch1">Featured Product</label>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="custom-control custom-switch">
+                              <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                              <label class="custom-control-label" for="customSwitch2">Today Deal</label>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="custom-control custom-switch">
+                              <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                              <label class="custom-control-label" for="customSwitch3">Status</label>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <!-- /.card-body -->
@@ -163,14 +199,14 @@
 </div>
 
 
-<!-- jQuery -->
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/trumbowyg.min.js"></script>
-<script> -->
-<!-- $('#product_details').trumbowyg({
-    btns: [['strong', 'em',], ['insertImage']],
-    autogrow: true
-});
-</script> -->
+<script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
+<script>
+  $(document).ready(function() {
+    $("#category").change(function() {
+      $let subcat = $(this).children("option:selected").val();
+      console.log(subcat);
+    });
+    console.log('lsadk')
+  })
+</script>
 @endsection

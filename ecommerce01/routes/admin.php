@@ -74,8 +74,9 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'middelware' => 'is_
 
     Route::prefix('product')->group(function() {
         Route::get('/', 'ProductController@productIndex')->name('product.index');
-        Route::get('/create', 'ProductController@create')->name('product.create');
+        Route::post('/create', 'ProductController@create')->name('product.create');
         Route::get('/manage', 'ProductController@manageIndex')->name('manage.index');
+        Route::get('/getCat/{id}', 'ProductController@getCategory')->name('getCat.index');
         // Route::get('/', 'ProductController@productIndex')->name('product.index');
     });
 

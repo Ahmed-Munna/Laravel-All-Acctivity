@@ -80,14 +80,13 @@
                                 <div class="form-group">
                                   <label for="product_childCategory">ChildCategory</label>
                                   <select type="text" class="form-control" name="childCategory" id="product_childCategory">
-                                      <option>ChildCategory</option>
                                   </select>
                                 </div>
 
                                 <div class="form-group">
                                   <label for="picup_point">Picup Point</label>
                                   <select type="text" class="form-control" name="childCategory" id="picup_point">
-                                      <option>Picup Point</option>
+                                      <option disabled>Picup Point</option>
                                       @foreach ($picup as $value)
                                       <option value="{{$value->id}}">{{$value->picup_point_name}}</option>
                                     @endforeach
@@ -202,11 +201,19 @@
 <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
 <script>
   $(document).ready(function() {
+    
     $("#category").change(function() {
-      $let subcat = $(this).children("option:selected").val();
-      console.log(subcat);
+      let subcat = $(this).children("option:selected").val();
+      let url = "/product/getCat/"+subcat;
+       // Empty the dropdown
+       $('#product_childCategory').find('option').remove();
+
+      $.get(url, function(data) {
+        $.each(data,function(index, value) {
+          $("#product_childCategory").append('<option value="'+value.id+'">'+value.childcategory_name+'</option>');
+        });
+      });
     });
-    console.log('lsadk')
   })
 </script>
 @endsection

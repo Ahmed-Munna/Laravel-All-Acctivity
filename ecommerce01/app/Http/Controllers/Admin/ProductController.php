@@ -21,6 +21,11 @@ class ProductController extends Controller
         $this->middleware('auth');
     }
 
+    public function getCategory($id) {
+        $data = ChildCategory::where('subcategory_id', $id)->get();
+        return $data;
+    }
+
     public function productIndex() {
         $cat = Category::all();
         $subCat = SubCategory::all();
